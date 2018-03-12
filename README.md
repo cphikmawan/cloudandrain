@@ -17,7 +17,7 @@ sudo apt-get update
 sudo apt-get install -y elixir
 
 #use mix to install hex
-mix local.hex
+echo y | mix local.hex
 
 #download and add the Erlang Repository to server
 wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo dpkg -i erlang-solutions_1.0_all.deb
@@ -31,11 +31,12 @@ echo y | mix archive.install https://github.com/phoenixframework/archives/raw/ma
 
 #make project directory
 mkdir phoenix
-sudo mix phx.new --no-ecto --no-brunch phoenix
+echo y | sudo mix phx.new --no-ecto --no-brunch phoenix
 
 #run server
 cd phoenix
-sudo mix phx.server
+echo y | sudo mix deps.get
+echo y | sudo mix phx.server
 	
 ```
 
