@@ -27,6 +27,9 @@
 **Jawab** :
 
 ```bash
+#!/usr/bin/env bash
+#this is how to install squid and bind9
+
 	sudo apt-get update
 	sudo apt-get install -y squid3
 	sudo apt-get install -y bind9
