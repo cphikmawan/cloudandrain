@@ -8,6 +8,29 @@
 
 **Jawab** :
 
+```bash
+#this is how to install phoenix web framework by using shell script
+
+#update and install elixir
+sudo apt-get update
+sudo apt-get install -y elixir
+
+#use mix to install hex
+mix local.hex
+
+#download and add the Erlang Repository to server
+wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo dpkg -i erlang-solutions_1.0_all.deb
+
+#update and install Erlang
+sudo apt-get update
+sudo apt-get install -y esl-erlang
+
+#install Phoenix archive
+echo y | mix archive.install https://github.com/phoenixframework/archives/raw/master/phx_new.ez
+	
+```
+
+
 #### 3. Buat vagrant virtualbox dan lakukan provisioning install:
 
 - php
@@ -28,10 +51,11 @@
 
 ```bash
 #!/usr/bin/env bash
-#this is how to install squid and bind9
 
-	sudo apt-get update
-	sudo apt-get install -y squid3
-	sudo apt-get install -y bind9
+#this is how to install squid3 and bind9
+sudo apt-get update
+sudo apt-get install -y squid3
+sudo apt-get install -y bind9
+
 ```
 
