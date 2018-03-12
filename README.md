@@ -25,3 +25,10 @@
 - Bind9
 
 **Jawab** :
+
+```bash
+	sudo apt-get update
+	sudo apt-get install -y squid3
+	sudo apt-get install -y bind9
+```
+
