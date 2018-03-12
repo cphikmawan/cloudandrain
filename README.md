@@ -9,6 +9,7 @@
 **Jawab** :
 
 ```bash
+#!/usr/bin/env bash
 #this is how to install phoenix web framework by using shell script
 
 #update and install elixir
@@ -27,6 +28,14 @@ sudo apt-get install -y esl-erlang
 
 #install Phoenix archive
 echo y | mix archive.install https://github.com/phoenixframework/archives/raw/master/phx_new.ez
+
+#make project directory
+mkdir phoenix
+sudo mix phx.new --no-ecto --no-brunch phoenix
+
+#run server
+cd phoenix
+sudo mix phx.server
 	
 ```
 
@@ -51,11 +60,10 @@ echo y | mix archive.install https://github.com/phoenixframework/archives/raw/ma
 
 ```bash
 #!/usr/bin/env bash
-
 #this is how to install squid3 and bind9
+
 sudo apt-get update
 sudo apt-get install -y squid3
 sudo apt-get install -y bind9
-
 ```
 
