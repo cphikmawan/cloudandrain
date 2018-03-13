@@ -137,7 +137,7 @@ Imajinasi :
 
     git clone https://github.com/fathoniadi/pelatihan-laravel.git
     cd pelatihan-laravel
-    cp .env-example .env
+    cp .env.example .env
     sudo composer update
     php artisan key:generate
     php artisan migrate
@@ -148,7 +148,7 @@ Imajinasi :
     config.vm.synced_folder "pelatihan-laravel/", "/var/www/web", id: "vagrant-root",
         owner: "vagrant", //untuk menentukan siapa ownernya atau chown
         group: "www-data", //untuk menentukan grupnya atau chown
-        mount_options: ["dmode=775,fmode=664"] //menentukan hak akses atau chmod
+        mount_options: ["dmode=775,fmode=664"] //menentukan hak akses atau chmod - d untuk direktori, f untuk file
 
 **STEP 3** - Port Forwarder
 
