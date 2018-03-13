@@ -7,7 +7,7 @@
 - Vagrant
 - VM Box Ubuntu Xenial 64bit 
 
-#### 0. Provisioning dilakukan dengan cara menggunakan file [bootstrap](link)
+#### 0. Provisioning dilakukan dengan cara menggunakan file [bootstrap](https://github.com/cphikmawan/cloudandrain/blob/master/bootstrap.sh)
 
 Setting pada vagrant file :
 
