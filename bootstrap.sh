@@ -6,14 +6,7 @@ sudo useradd awan
 echo -e "buayakecil\nbuayakecil" | sudo passwd awan
 
 # 2.
-#this is how to install phoenix web framework
-
-#update and install elixir
-sudo apt-get update
-sudo apt-get install -y elixir
-
-#use mix to install hex
-echo y | mix local.hex
+#this is how to install phoenix web framework by using shell script
 
 #download and add the Erlang Repository to server
 wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo dpkg -i erlang-solutions_1.0_all.deb
@@ -22,18 +15,23 @@ wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo 
 sudo apt-get update
 sudo apt-get install -y esl-erlang
 
+#update and install elixir
+sudo apt-get install elixir
+
+#use mix to install hex
+echo y | mix local.hex
+
 #install Phoenix archive
 echo y | mix archive.install https://github.com/phoenixframework/archives/raw/master/phx_new.ez
 
 #make project directory
-mkdir phoenix
-echo y | sudo mix phx.new --no-ecto --no-brunch phoenix
+mkdir newproject
+echo y | sudo mix phx.new --no-ecto --no-brunch newproject
 
 #run server
-cd phoenix
+cd newproject
 echo y | sudo mix deps.get
 echo y | sudo mix phx.server
-
 # 3.
 
 # this is how to install php

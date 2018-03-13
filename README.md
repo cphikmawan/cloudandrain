@@ -64,6 +64,14 @@ echo y | sudo mix phx.server
 	
 ```
 
+**hasil vagrant provision**
+
+![](assets/phoenix.png)
+
+**Akses IP vagrant pada browser dengan port 4000**
+
+![](assets/phoenixweb.png)
+
 
 #### 3. Buat vagrant virtualbox dan lakukan provisioning install:
 
@@ -374,6 +382,15 @@ sudo apt-get update
 sudo apt-get install -y squid3
 sudo apt-get install -y bind9
 ```
+**Hasil instalasi squid pada vagrant provision** 
+![](assets/squid.png)
+**Hasil instalasi bind pada vagrant provision**
+![](assets/bind.png)
+**Services status bind & squid pada vagrant ssh**
+![](assets/services.png)
+
+
+
 
 ## Selesai
 
