@@ -64,7 +64,7 @@ echo y | sudo mix phx.server
 	
 ```
 
-**hasil vagrant provision**
+**Hasil instalasi Vagrant Provision**
 
 ![](assets/phoenix.png)
 
@@ -382,11 +382,17 @@ sudo apt-get update
 sudo apt-get install -y squid3
 sudo apt-get install -y bind9
 ```
+
 **Hasil instalasi squid pada vagrant provision** 
+
 ![](assets/squid.png)
+
 **Hasil instalasi bind pada vagrant provision**
+
 ![](assets/bind.png)
+
 **Services status bind & squid pada vagrant ssh**
+
 ![](assets/services.png)
 
 
