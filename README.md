@@ -5,13 +5,32 @@
 ### Kebutuhan
 - Virtual Box
 - Vagrant
-- VM Box Ubuntu Xenial 64bit 
+- VM Box Ubuntu 16.04 Xenial 64bit 
+
+### Membuat VM Ubuntu 16.04 Xenial
+1. Download box xenial
+
+	 	wget https://vagrantcloud.com/ubuntu/boxes/xenial64/versions/20180309.0.0/providers/virtualbox.box
+
+2. Addbox dengan cara
+
+	**vagrant box add (nama_box_terserah) (box_hasil_download)**
+
+		vagrant box add ubuntu/xenial64 xenial-server-cloudimg-amd64-vagrant.box
+
+3. Edit Box, kemudian `vagrant up`
+
+		config.vm.box = "ubuntu/xenial64"
 
 #### 0. Provisioning dilakukan dengan cara menggunakan file [bootstrap](https://github.com/cphikmawan/cloudandrain/blob/master/bootstrap.sh)
 
 Setting pada vagrant file :
 
     config.vm.provision :shell, path: "bootstrap.sh" 
+
+Reload
+
+		vagrant reload --provision
 
 #### 1. Buat vagrant virtualbox dan buat user 'awan' dengan password 'buayakecil'.
 
@@ -351,7 +370,21 @@ max_binlog_size   = 100M
 
     sudo service mysql restart
 
-**STEP 6** - Testing
+**STEP 6** - Grant Privileges agar **host** dapat mengakses mysql pada **VM**
+
+Login mysql pada VM
+
+	mysql -u root -p
+
+- Grant Privileges
+
+		GRANT ALL PRIVILEGES ON *.* TO 'user_yang_perlu_hak_akses'@'ip_host_yang_perlu_hak_akses' INDENTIFIED BY 'password';
+
+- Flush
+
+		FLUSH PRIVILEGES;
+
+**STEP 7** - Testing
 
 1. Web Server bisa diakses pada port 8080
     
