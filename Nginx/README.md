@@ -137,3 +137,8 @@ Tipe Load Balancing ini akan mendistribusikan Traffic berdasarkan IP dari Client
 ### 3. Cara mengatasi masalah session ketika kita melakukan load balancing
 
 Ada konfigurasi yang namanya sticky session. Jika menggunakan konfigurasi ini, pada hit pertama si user akan diberikan penanda, biasanya berbentuk cookie. Pada hit berikutnya, LB akan melihat cookienya, dan mengarahkan ke server yang sebelumnya sudah mengurus si user ini. 
+
+## Selesai
+
+- Cahya Putra Hikmawan (Cloud) - 05111540000119
+- Fuad Dary Rosyadi (Dr. Fu) - 05111540000089
