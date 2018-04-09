@@ -40,21 +40,70 @@ Soal :
 
 		config.vm.network "private_network", ip: "xxx.xxx.xxx.xxx"
 
-	# Loadbalancer 	(192.168.33.10)
-	# Worker 1		(192.168.33.11)
-	# Worker 2		(192.168.33.12)
+	##### Loadbalancer 	(192.168.33.10)
+	##### Worker 1		(192.168.33.11)
+	##### Worker 2		(192.168.33.12)
 
 2. Aktifkan Provisioning
 
 		config.vm.provision :shell, path: "bootstrap.sh" 
 
-3. Buat File Provisioning (bootstrap.sh)
+
+##### Buat File Provisioning (bootstrap.sh)
+1. Load balancer 
 	
-##### Load balancer 
 		sudo apt-get update
 		sudo apt-get install -y php7.0 php7.0-fpm php7.0-cgi nginx
 
-##### Worker 1 dan 2
+2. Worker 1 dan 2
+	
 		sudo apt-get update
 		sudo apt-get install -y php7.0 php7.0-fpm libapache2-mod-php apache2
+
+##### Edit file config Nginx pada Load Balancer
+
+		etc/nginx/sites-available/default
+
+1. Tambahkan upstream
+		
+		upstream lb {
+			server 192.168.33.11:9000;
+			server 192.168.33.12:9000;
+		}
+
+2. Edit config php 
+		
+		# Add index.php to the list if you are using PHP
+        index index.php index.html index.htm index.nginx-debian.html;
+
+        # pass the PHP scripts to FastCGI server listening on "lb"
+		location ~ \.php$ {
+               include snippets/fastcgi-php.conf;
+               fastcgi_pass lb;
+        }
+
+3. Restart Nginx
+		
+		sudo service nginx restart
+
+##### Edit file config PHP-fpm pada Worker 1 dan 2
+
+		/etc/php/7.0/fpm/pool.d/www.conf
+
+1. Ubah variabel listen
+		
+		dari :
+			listen = /run/php/php7.0-fpm.sock
+		
+		menjadi :
+			listen = 9000
+
+2. Restart PHP-fpm
+
+		sudo service php7.0-fpm restart
+
+##### Buat file PHP di masing masing Load balancer dan Worker
+
+		/var/www/html/index.php
+
 
