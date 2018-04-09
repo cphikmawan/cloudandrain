@@ -18,9 +18,9 @@ Soal :
 3. Biasanya pada saat membuat website, data user yang sedang login disimpan pada session. Sesision secara default tersimpan pada memory pada sebuah host. Bagaimana cara mengatasi masalah session ketika kita melakukan load balancing?
 
 
-#### 1. Membuat Vagrantfile sekaligus provisioning-nya 
+### 1. Membuat Vagrantfile sekaligus provisioning-nya 
 
-##### Membuat VM Ubuntu 16.04 Xenial
+#### Membuat VM Ubuntu 16.04 Xenial
 1. Download box xenial
 
 	 	wget https://vagrantcloud.com/ubuntu/boxes/xenial64/versions/20180309.0.0/providers/virtualbox.box
@@ -35,21 +35,18 @@ Soal :
 
 		config.vm.box = "ubuntu/xenial64"
 
-##### Edit Vagrantfile
+#### Edit Vagrantfile
 1. Aktifkan private networking pada setiap Vagrantfile
 
 		config.vm.network "private_network", ip: "xxx.xxx.xxx.xxx"
 
-	##### Loadbalancer 	(192.168.33.10)
-	##### Worker 1		(192.168.33.11)
-	##### Worker 2		(192.168.33.12)
+		##### Loadbalancer (192.168.33.10) | Worker 1 (192.168.33.11) | Worker 2 (192.168.33.12)
 
 2. Aktifkan Provisioning
 
 		config.vm.provision :shell, path: "bootstrap.sh" 
 
-
-##### Buat File Provisioning (bootstrap.sh)
+#### Buat File Provisioning (bootstrap.sh)
 1. Load balancer 
 	
 		sudo apt-get update
@@ -60,13 +57,31 @@ Soal :
 		sudo apt-get update
 		sudo apt-get install -y php7.0 php7.0-fpm libapache2-mod-php apache2
 
-##### Edit file config Nginx pada Load Balancer
+#### Edit file config Nginx pada Load Balancer
 
 		etc/nginx/sites-available/default
 
-1. Tambahkan upstream
+1. Tambahkan upstream (pilih salah satu)
 		
+		#### mode Round Robin
+
 		upstream lb {
+			server 192.168.33.11:9000;
+			server 192.168.33.12:9000;
+		}
+
+		#### mode Least Connection
+
+		upstream lb {
+			least_conn;
+			server 192.168.33.11:9000;
+			server 192.168.33.12:9000;
+		}
+
+		#### mode IP Hash
+
+		upstream lb {
+			ip_hash;
 			server 192.168.33.11:9000;
 			server 192.168.33.12:9000;
 		}
@@ -86,7 +101,7 @@ Soal :
 		
 		sudo service nginx restart
 
-##### Edit file config PHP-fpm pada Worker 1 dan 2
+#### Edit file config PHP-fpm pada Worker 1 dan 2
 
 		/etc/php/7.0/fpm/pool.d/www.conf
 
@@ -102,8 +117,23 @@ Soal :
 
 		sudo service php7.0-fpm restart
 
-##### Buat file PHP di masing masing Load balancer dan Worker
+#### Buat file PHP di masing masing Load balancer dan Worker
 
 		/var/www/html/index.php
 
+#### Test menggunakan browser dengan membuka alamat ip dari load balancer
 
+### 2. Perbedaan Algoritma IP Hash, Round Robin, dan Least Connection
+
+#### Round Robin
+Tipe Load Balancing ini akan mendistribusikan Traffic ke server-server dibelakangnya dengan sama rata. Tipe ini cocok untuk melayani Website dengan tipe statik dikarenakan cara kerjanya yang mendistribusikan Traffic ke Semua Server. Meskipun memungkinkan untuk diaplikasikan pada Website Dinamis namun harus melakukan konfigurasi lebih lanjut karena jika tidak maka akan memiliki masalah pada Sesi Aplikasi.
+
+#### Least Connection
+Tipe Load Balancing ini akan mendistribusikan Traffic ke Server yang mempunyai beban load yang rendah. Karakteristik dari Tipe ini sama seperti Round Robin, yaitu cocok untuk Website Statik namun akan bermasalah untuk Website Dinamis apabila tidak ada konfigurasi lanjut.
+
+#### IP Hash
+Tipe Load Balancing ini akan mendistribusikan Traffic berdasarkan IP dari Client. NGINX akan mencocokkan Webserver Backend dengan IP yang dimiliki oleh Client, sehingga apabila seorang Client mendapatkan jawaban dari Server A pada pertama kali, maka request selanjutnya juga akan mendapat jawaban dari Server A dan seterusnya sampai Server tersebut dianggap Down, jika Down maka Client baru akan diarahkan ke Server B dan seterusnya. Karena itu dari ketiga tipe Load Balancing ini, IP Hash adalah tipe yang paling cocok diaplikasikan pada Website Dinamis.
+
+### 3. Cara mengatasi masalah session ketika kita melakukan load balancing
+
+Ada konfigurasi yang namanya sticky session. Jika menggunakan konfigurasi ini, pada hit pertama si user akan diberikan penanda, biasanya berbentuk cookie. Pada hit berikutnya, LB akan melihat cookienya, dan mengarahkan ke server yang sebelumnya sudah mengurus si user ini. 
