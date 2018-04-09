@@ -7,7 +7,7 @@
 - Vagrant
 - VM Box Ubuntu 16.04 Xenial 64bit 
 
-###SOAL
+### SOAL
 
 Buatlah sistem load balancing dengan 1 load balancer(nginx dan 2 worker(apache2), terapkan algoritma load balancing round-robin, least-connected, dan ip-hash.
 
@@ -40,12 +40,21 @@ Soal :
 
 		config.vm.network "private_network", ip: "xxx.xxx.xxx.xxx"
 
-	Loadbalancer 	(192.168.33.10)
-	Worker 1		(192.168.33.11)
-	Worker 2		(192.168.33.12)
+	# Loadbalancer 	(192.168.33.10)
+	# Worker 1		(192.168.33.11)
+	# Worker 2		(192.168.33.12)
 
 2. Aktifkan Provisioning
 
 		config.vm.provision :shell, path: "bootstrap.sh" 
 
+3. Buat File Provisioning (bootstrap.sh)
+	
+##### Load balancer 
+		sudo apt-get update
+		sudo apt-get install -y php7.0 php7.0-fpm php7.0-cgi nginx
+
+##### Worker 1 dan 2
+		sudo apt-get update
+		sudo apt-get install -y php7.0 php7.0-fpm libapache2-mod-php apache2
 
