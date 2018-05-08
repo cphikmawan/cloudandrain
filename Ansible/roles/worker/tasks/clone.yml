@@ -1,0 +1,20 @@
+---
+
+- name: run git pull
+  become: yes
+  git:
+    repo: git://github.com/udinIMM/Hackathon.git
+    dest: '/var/www/Hackathon'
+    version: 'master'
+    # key_file: '/home/ubuntu/.ssh/id_rsa' 
+    # accept_hostkey : yes 
+    force: yes
+
+- name: Update env
+  become: yes
+  template: 
+   src=env 
+   dest='/var/www/Hackathon/.env'
+
+
+

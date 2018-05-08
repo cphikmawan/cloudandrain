@@ -1,0 +1,29 @@
+---
+- name: delete apt chache
+  become: yes
+  become_user: root
+  become_method: su
+  command: rm -vf /var/lib/apt/lists/*
+
+- name: install on debian based linux
+  become: yes
+  become_user: root
+  become_method: su
+  environment: 
+    http_proxy: "{{ proxy_env }}"
+    https_proxy: "{{ proxy_env }}"
+  apt: name={{ item }} state=latest update_cache=true
+  with_items:
+   - mysql-server
+   - python-mysqldb
+  when: ansible_os_family  == "Debian"
+
+- name: Create user for mysql
+  mysql_user: user={{username}} host="%" password={{password}} priv=*.*:ALL,GRANT
+
+- name: Copy .my.cnf file with root password credentials
+  template: 
+    src=templates/my.cnf 
+    dest=/etc/mysql/mariadb.conf.d/50-server.cnf
+  notify: 
+   - restart mysql

@@ -1,0 +1,6 @@
+[db]
+db ansible_host=10.151.36.197 ansible_user=root ansible_become_pass=sembarang
+
+[worker]
+worker1 ansible_host=10.151.36.198 ansible_user=root ansible_become_pass=sembarang
+worker2 ansible_host=10.151.36.199 ansible_user=root ansible_become_pass=sembarang

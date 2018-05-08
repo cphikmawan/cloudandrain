@@ -1,0 +1,8 @@
+---
+- include : preinstall.yml
+- include : install.yml
+- include : clone.yml
+- include : nginx.yml
+
+
+

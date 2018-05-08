@@ -1,0 +1,16 @@
+---
+# roles role
+
+# - hosts: db
+#   vars:
+#     proxy_env: 'http://ITS-553468-dc885:0e820@proxy.its.ac.id:8080'
+#     username: 'regal'
+#     password: 'bolaubi'
+#   roles:
+#     - { role: db }
+
+- hosts: worker
+  vars:
+    proxy_env: 'http://ITS-553468-dc885:0e820@proxy.its.ac.id:8080'
+  roles:
+    - { role: worker }
