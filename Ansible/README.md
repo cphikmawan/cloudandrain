@@ -1,4 +1,11 @@
-# Dokumentasi Konfigurasi Haproxy Load Balancer dengan ansible
+## Tugas Ansible
+
+### Anggota Kelompok :
+
+##### 1. Fuad Dary Rosyadi (Dr. Fu) - 05111540000089   
+##### 2. Cahya Putra Hikmawan (Cloud) - 05111540000119
+
+### Penyelesaian Tugas Ansible
 
 Untuk melakukan konfigurasi haproxy menggunakan ansible terlebih dahulu menyiapkan 2 server.
 
