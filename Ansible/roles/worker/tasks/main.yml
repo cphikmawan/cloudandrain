@@ -2,7 +2,9 @@
 - include : preinstall.yml
 - include : install.yml
 - include : clone.yml
+- include : postinstall.yml
 - include : nginx.yml
+
 
 
 

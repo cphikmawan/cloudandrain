@@ -20,9 +20,15 @@
 
 - name: Create user for mysql
   mysql_user: user={{username}} host="%" password={{password}} priv=*.*:ALL,GRANT
+  
+- name: Create DB
+  mysql_db: name=hackathon state=present collation=utf8_general_ci
+
 
 - name: Copy .my.cnf file with root password credentials
   template: 
     src=templates/my.cnf 
     dest=/etc/mysql/mariadb.conf.d/50-server.cnf
   notify: restart mysql
+
+

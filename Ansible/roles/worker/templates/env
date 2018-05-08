@@ -8,7 +8,7 @@ APP_URL=http://localhost
 DB_CONNECTION=mysql
 DB_HOST=10.151.36.197
 DB_PORT=3306
-DB_DATABASE=
+DB_DATABASE=hackathon
 DB_USERNAME=regal
 DB_PASSWORD=bolaubi
 
