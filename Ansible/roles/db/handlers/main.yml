@@ -3,4 +3,4 @@
   become: yes
   become_user: root
   become_method: su
-  action: service name=mysql enabled=yes state=restarted
+  action: service name=mysql state=restarted

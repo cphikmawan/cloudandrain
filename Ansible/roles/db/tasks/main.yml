@@ -25,5 +25,4 @@
   template: 
     src=templates/my.cnf 
     dest=/etc/mysql/mariadb.conf.d/50-server.cnf
-  notify: 
-   - restart mysql
+  notify: restart mysql

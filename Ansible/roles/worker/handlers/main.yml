@@ -1,5 +1,6 @@
 ---
 # Handlers for roles
 
-#- name: example restart
-#  action: service name=service state=restarted
+- name: nginx restart
+  become: yes
+  action: service name=nginx state=restarted
