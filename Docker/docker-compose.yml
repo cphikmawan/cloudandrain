@@ -13,7 +13,7 @@ services:
       MYSQL_PASSWORD: buayakecil
 
   worker:
-    image: pythonflask-app
+    image: lalalala
     depends_on:
       - db
     environment:
@@ -22,13 +22,13 @@ services:
       DB_PASSWORD: buayakecil
       DB_NAME: reservasi
 
-  nginx:
-    image: nginx:stable-alpine
-    ports:
-      - 9011:80
-    depends_on:
-      - worker
-    volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+  # nginx:
+  #   image: nginx:stable-alpine
+  #   ports:
+  #     - 9011:80
+  #   depends_on:
+  #     - worker
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
 volumes:
    dbdata:
