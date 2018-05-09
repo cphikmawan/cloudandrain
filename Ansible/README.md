@@ -24,7 +24,8 @@
     RSAAuthentication yes
 ```
 - Pastikan semua VM sudah dapat di remote menggunakan SSH karena **Ansible** terkoneksi menggunakan SSH
-- 
+
+
 3. Install Ansible di host yang akan digunakan untuk remote akses menggunakan ansible
 ```
     sudo apt install ansible
@@ -35,6 +36,27 @@
 ```
     ansible-playbook -i hosts cloud.yml -k
 ```
+![Run Test](assets/ansible-playbook.png "Run Test")
+
+5. Hollaa!!!
+- **Worker 1**
+
+
+![Dashboard](assets/dashboard.png "Dashboard")
+
+![Login](assets/login.png "Login")
+
+![Register](assets/register.png "Register")
+
+- **Worker 2**
+
+
+![Dashboard](assets/dashboard2.png "Dashboard")
+
+![Login](assets/login2.png "Login")
+
+![Register](assets/register2.png "Register")
+
 
 #### 2. Cara Kerja & Penjelasan
 - ##### File cloud.yml
@@ -134,5 +156,7 @@
 
 #### Referensi
 [1. http://www.ansible.com](http://www.ansible.com "ansible")
+
 [2. Modul Ansible -  Cloud Computing](https://github.com/fathoniadi/cloud-2018/tree/master/ansible "Modul")
+
 [3. Buku Anak TC](https://stackoverflow.com/ "stackoverflow")
